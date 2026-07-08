@@ -1,4 +1,4 @@
-console.log("D3 Loaded - Version:", d3.version);
+let cleanedDataGlobal = [];
 
 d3.csv("data/vgsales.csv").then(data => {
     const cleanedData = data.filter(d => d.Year !== "" && d.Year !== "N/A")
@@ -15,22 +15,6 @@ d3.csv("data/vgsales.csv").then(data => {
         Other_Sales: +d.Other_Sales,
         Global_Sales: +d.Global_Sales
     }));
-
-    //Check Cleaned Data
-    /*
-    console.log(cleanedData);
-    console.log("Rows:", cleanedData.length);
-    console.log(
-        "Years:",
-        d3.min(cleanedData, d => d.Year),
-        "-",
-        d3.max(cleanedData, d => d.Year)
-    );
-    console.log(
-        "Total Global Sales:",
-        d3.sum(cleanedData, d => d.Global_Sales).toFixed(2)
-    );
-    */
 
     function drawScene1(cleanedData) {
         const annualSales = d3.rollups(
@@ -112,7 +96,50 @@ d3.csv("data/vgsales.csv").then(data => {
         svg.selectAll("rect").data(platformSales).enter().append("rect").attr("x", d => xScale(d.platform)).attr("y", d => yScale(d.sales)).attr("width", xScale.bandwidth()).attr("height", d => height - margin.bottom - yScale(d.sales)).attr("fill", "grey");
     }
 
-    //drawScene1(cleanedData);
-    //drawScene2(cleanedData);
+    function drawScene3(cleanedData) {
+        const genreSales = d3.rollups(
+            cleanedData,
+            games => d3.sum(games, d => d.NA_Sales),
+            d => d.Genre
+        )
+        .map(d => ({
+            genre: d[0],
+            sales: d[1]
+        }))
+        .sort((a,b) => a.sales - b.sales);
 
+        console.log("Genre sales:", genreSales);
+
+        const width = 900;
+        const height = 450;
+        const margin = {
+            top: 40,
+            right: 40,
+            bottom: 60,
+            left: 70
+        };
+
+        d3.select('#chart').html("");
+
+        const svg = d3.select("#chart").append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("width", "100%").attr("height", "100%");
+
+        const xScale = d3.scaleBand().domain(genreSales.map(d => d.genre)).range([margin.left, width - margin.right]).padding(0.5);
+        const yScale = d3.scaleLinear().domain([0, d3.max(genreSales, d => d.sales)]).nice().range([height - margin.bottom, margin.top]);
+
+        const xAxis = d3.axisBottom(xScale);
+        const yAxis = d3.axisLeft(yScale);
+
+        svg.append("g").attr("transform", `translate(0, ${height - margin.bottom})`).call(xAxis);
+        svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(yAxis);
+
+        svg.selectAll("rect").data(genreSales).enter().append("rect").attr("x", d => xScale(d.genre)).attr("y", d => yScale(d.sales)).attr("width", xScale.bandwidth()).attr("height", d => height - margin.bottom - yScale(d.sales)).attr("fill", "grey");
+    }
+
+    cleanedDataGlobal = cleanedData;
+
+    window.drawScene1 = drawScene1;
+    window.drawScene2 = drawScene2;
+    window.drawScene3 = drawScene3;
+
+    showScene(1);
 });

@@ -1,56 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>The Evolution of Video Game Sales</title>
-
+    <title>Visual Narrative | Video Game Sales</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- D3 -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
 <body>
+    <header>
+        <h1>The Evolution of Video Game Sales</h1>
+        <p>How console generations and regional preferences shaped the gaming industry.</p>
+    </header>
 
-<header>
-    <h1>The Evolution of Video Game Sales</h1>
-    <p>How console generations and regional preferences shaped the gaming industry.</p>
-</header>
+    <main>
+        <section id="scene-title">
+            <h2>Scene 1</h2>
+            <h3>How did video games become a global phenomenon?</h3>
+        </section>
 
-<main>
+        <section id="chart"></section>
+        <section id="controls"></section>
+        <section id="annotations"></section>
 
-    <section id="scene-title">
-        <h2>Scene 1</h2>
-        <h3>How did video games become a global phenomenon?</h3>
-    </section>
+        <nav>
+            <button id="prevBtn">← Previous</button>
+            <button id="nextBtn">Next →</button>
+        </nav>
+    </main>
 
-    <section id="chart">
-
-    </section>
-
-    <section id="controls">
-        
-    </section>
-
-    <section id="annotations">
-
-    </section>
-
-    <nav>
-
-        <button id="prevBtn">← Previous</button>
-
-        <button id="nextBtn">Next →</button>
-
-    </nav>
-
-</main>
-
-<script src="script.js"></script>
-
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="navigation.js"></script>
+    <script src="graphs.js"></script>
 </body>
-
 </html>
