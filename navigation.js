@@ -9,19 +9,19 @@ function showScene(sceneNumber) {
 
     if(currentScene === 1) {
         d3.select("#scene-title h2").text("Scene 1");
-        d3.select("#scene-title h3").text("How did video games become a global phenomenon?");
+        d3.select("#scene-title h3").text("How did video games become a global industry?");
         drawScene1(cleanedDataGlobal);
     }
 
     if(currentScene === 2) {
         d3.select("#scene-title h2").text("Scene 2");
-        d3.select("#scene-title h3").text("Which console drove that growth?");
+        d3.select("#scene-title h3").text("Which platforms powered the growth?");
         drawScene2(cleanedDataGlobal);
     }
 
     if(currentScene === 3) {
         d3.select("#scene-title h2").text("Scene 3");
-        d3.select("#scene-title h3").text("How did gaming preferences differ across regions?");
+        d3.select("#scene-title h3").text("How did genre preferences differ across world regions?");
         drawScene3(cleanedDataGlobal);
     }
 
