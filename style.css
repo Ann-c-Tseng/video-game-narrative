@@ -28,6 +28,21 @@ h1 {
     font-size: 16px;
 }
 
+.annotation-text {
+    font-size: 14px;
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    background: rgb(245, 240, 240);
+    border: 3px solid #333333;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 14px;
+    pointer-events: none;
+}
+
 footer{
     font-size: 16px;
     text-align: center;
