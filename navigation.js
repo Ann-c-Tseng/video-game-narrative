@@ -9,7 +9,7 @@ function showScene(sceneNumber) {
 
     if(currentScene === 1) {
         d3.select("#scene-title h2").text("Scene 1");
-        d3.select("#scene-title h3").text("How did physical console game sales grow worldwide?");
+        d3.select("#scene-title h3").text("How did physical video game sales grow worldwide?");
         drawScene1(cleanedDataGlobal);
         d3.select("#annotations").html(`
             <h3>Narrative Insight Annotation:</h3>
@@ -45,7 +45,7 @@ function showScene(sceneNumber) {
         drawScene3(cleanedDataGlobal);
         d3.select("#annotations").html(`
             <h3>Narrative Insight Annotation:</h3><p> 
-            Most regions favored Action games, while Japan uniquely favored Role-Playing games. 
+            <i>Most regions favored Action games</i>, while <i>Japan uniquely favored Role-Playing games</i>. 
             This contrast highlights how regional gaming preferences shaped the global video game market. 
             </p>
             <p><strong>Interaction:</strong> 

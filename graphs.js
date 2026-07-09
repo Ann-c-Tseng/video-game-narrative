@@ -223,10 +223,10 @@ d3.csv("data/vgsales.csv").then(data => {
         //Annotation
         const topGenre = genreSales[genreSales.length - 1];
         const annotationText = {
-            NA_Sales: "Action games were the most popular genre for North American sales",
-            EU_Sales: "Action games were the most popular genre for European sales",
-            JP_Sales: "Role-Playing games were the most popular genre for Japanese sales",
-            Other_Sales: "Action games were the most popular genre for other regions"
+            NA_Sales: "Action was the most popular genre for the North American region",
+            EU_Sales: "Action was the most popular genre for the European region",
+            JP_Sales: "Role-Playing was the most popular genre for the Japanese region",
+            Other_Sales: "Action games was the most popular genre for other regions"
         };
         svg.append("circle").attr("cx", xScale(topGenre.genre) + xScale.bandwidth()/2).attr("cy", yScale(topGenre.sales)).attr("r", 5).attr("fill", "red");
         svg.append("line").attr("x1", xScale(topGenre.genre) + xScale.bandwidth()/2).attr("y1", yScale(topGenre.sales)).attr("x2", width - 330).attr("y2", 40).attr("stroke", "red").attr("stroke-width", 2);
