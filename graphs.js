@@ -58,7 +58,7 @@ d3.csv("data/vgsales.csv").then(data => {
         svg.append("text").attr("transform", "rotate(-90)").attr("x", -height/2).attr("y", 20).attr("text-anchor", "middle").attr("class", "axis-label").text("Total Global Sales (millions of copies sold)");
 
         const lineGenerator = d3.line().x(d => xScale(d.year)).y(d => yScale(d.sales));
-        svg.append("path").datum(annualSales).attr("fill", "none").attr("stroke", "black").attr("stroke-width", 2.5).attr("d", lineGenerator);
+        svg.append("path").datum(annualSales).attr("fill", "none").attr("stroke", '#08d9d6').attr("stroke-width", 2.5).attr("d", lineGenerator);
     
         //Annotation
         const peak = annualSales.reduce((a,b) => b.sales > a.sales ? b:a);
@@ -72,9 +72,9 @@ d3.csv("data/vgsales.csv").then(data => {
         if(tooltip.empty()) {
             tooltip = d3.select("body").append("div").attr("class", "tooltip");
         }
-        svg.selectAll(".hover-point").data(annualSales).enter().append("circle").attr("class", "hover-point").attr("cx", d=> xScale(d.year)).attr("cy", d => yScale(d.sales)).attr("r", 4).attr("fill", "white").attr("stroke", "black").attr("stroke-width", 1.5)
+        svg.selectAll(".hover-point").data(annualSales).enter().append("circle").attr("class", "hover-point").attr("cx", d=> xScale(d.year)).attr("cy", d => yScale(d.sales)).attr("r", 4).attr("fill", "white").attr("stroke", '#08d9d6').attr("stroke-width", 1.5)
             .on("mouseover", function(event, d) {
-                d3.select(this.parentNode).append("circle").attr("class", "hover-highlight").attr("cx", xScale(d.year)).attr("cy", yScale(d.sales)).attr("r", 4).attr("fill", "red").style("pointer-events", "none").attr("stroke", "black").attr("stroke-width", 1.5);
+                d3.select(this.parentNode).append("circle").attr("class", "hover-highlight").attr("cx", xScale(d.year)).attr("cy", yScale(d.sales)).attr("r", 4).attr("fill", "red").style("pointer-events", "none").attr("stroke", '#08d9d6').attr("stroke-width", 1.5);
 
                 tooltip.style("display", "block").html(`
                     <strong>${d.year}</strong><br>
@@ -130,7 +130,7 @@ d3.csv("data/vgsales.csv").then(data => {
         svg.append("text").attr("x", width/2).attr("y", height-15).attr("text-anchor", "middle").attr("class", "axis-label").text("Platform");
         svg.append("text").attr("transform", "rotate(-90)").attr("x", -height/2).attr("y", 20).attr("text-anchor", "middle").attr("class", "axis-label").text("Total Global Sales (millions of copies sold)");
 
-        svg.selectAll("rect").data(platformSales).enter().append("rect").attr("x", d => xScale(d.platform)).attr("y", d => yScale(d.sales)).attr("width", xScale.bandwidth()).attr("height", d => height - margin.bottom - yScale(d.sales)).attr("fill", "grey");
+        svg.selectAll("rect").data(platformSales).enter().append("rect").attr("x", d => xScale(d.platform)).attr("y", d => yScale(d.sales)).attr("width", xScale.bandwidth()).attr("height", d => height - margin.bottom - yScale(d.sales)).attr("fill", '#08d9d6');
         
         //Annotation
         const bestPlatform = platformSales[0];
@@ -154,7 +154,7 @@ d3.csv("data/vgsales.csv").then(data => {
         }).on("mousemove", function(event) {
                 tooltip.style("left", `${event.pageX + 14}px`).style("top", `${event.pageY - 28}px`);
         }).on("mouseout", function() {
-            d3.select(this).attr("fill", "grey");
+            d3.select(this).attr("fill", '#08d9d6');
             tooltip.style("display", "none");
         });
     }
@@ -218,7 +218,7 @@ d3.csv("data/vgsales.csv").then(data => {
         svg.append("text").attr("transform", "rotate(-90)").attr("x", -height/2).attr("y", 20).attr("text-anchor", "middle").attr("class", "axis-label").text(`${regionLabels[regionColumn]} Sales (millions of copies sold)`);
 
 
-        svg.selectAll("rect").data(genreSales).enter().append("rect").attr("x", d => xScale(d.genre)).attr("y", d => yScale(d.sales)).attr("width", xScale.bandwidth()).attr("height", d => height - margin.bottom - yScale(d.sales)).attr("fill", "grey");
+        svg.selectAll("rect").data(genreSales).enter().append("rect").attr("x", d => xScale(d.genre)).attr("y", d => yScale(d.sales)).attr("width", xScale.bandwidth()).attr("height", d => height - margin.bottom - yScale(d.sales)).attr("fill", '#08d9d6');
     
         //Annotation
         const topGenre = genreSales[genreSales.length - 1];
@@ -250,7 +250,7 @@ d3.csv("data/vgsales.csv").then(data => {
             tooltip.style("left", `${event.pageX + 14}px`).style("top", `${event.pageY - 28}px`);
         })
         .on("mouseout", function() {
-            d3.select(this).attr("fill", "grey");
+            d3.select(this).attr("fill", '#08d9d6');
             tooltip.style("display", "none");
         });
     }
